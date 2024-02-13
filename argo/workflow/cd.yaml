@@ -74,11 +74,13 @@ spec:
             template: tmpl-deploy
             arguments:
               parameters:
+                - name: name
+                  value: "{{workflow.parameters.vcluster-name}}"
                 - name: path-chart
                   value: "{{workflow.parameters.path-chart}}"
                 - name: image
                   value: "{{workflow.parameters.image}}"
-            depends: "clone"
+            depends: "clone-repo && create-vcluster"
     - name: tmpl-clone
       inputs:
         parameters:
@@ -128,11 +130,15 @@ spec:
     - name: tmpl-deploy
       inputs:
         parameters:
+          - name: name
           - name: path-chart
           - name: image
       container:
+        volumeMounts:
+          - mountPath: /work
+            name: work
         image: ghcr.io/loft-sh/vcluster-cli:0.19
-        workingDir: /work/"{{inputs.parameters.path-chart}}"
+        workingDir: /work/{{inputs.parameters.path-chart}}
         command:
           - vcluster
         args:
