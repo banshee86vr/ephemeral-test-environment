@@ -1,6 +1,6 @@
 # Configuration of Argo Workflow entities
 
-## Prerequisites
+## Requirements
 
 - Minikube
 - `kubectl` command-line tool installed and configured to connect to your Kubernetes cluster.
@@ -53,11 +53,11 @@ Argo Workflows provides a web-based UI for managing and monitoring workflows. To
 kubectl port-forward svc/argo-server -n argo 2746:2746
 ```
 
-Now you can access the Argo Workflows UI by navigating to `http://localhost:2746` in your web browser.
+Now, you can access the Argo Workflows UI by navigating to `http://localhost:2746` in your web browser.
 
 ### 5. Add privileges to Argo service accounts
 
-> Add this privileges to the Argo service accounts are recommended only for demo purposes. **IT'S STRONGLY NOT RECOMMENDED TO REPLICATE THIS CONFIGURATION IN PRODUCTION EVINRONMENTS.**
+> Add these privileges to the Argo service accounts are recommended only for demo purposes. **IT'S STRONGLY NOT RECOMMENDED TO REPLICATE THIS CONFIGURATION IN PRODUCTION ENVIRONMENTS.**
 
 This command adds `cluster-admin` clusterrole to `argo:argo-server` and `argo:default`. In this way, Argo Workflow can manage every kind of resource in every namespace of the cluster.
 
@@ -66,11 +66,11 @@ kubectl create clusterrolebinding argo-admin-server --clusterrole=cluster-admin 
 kubectl create clusterrolebinding argo-admin-default --clusterrole=cluster-admin --serviceaccount=argo:default -n argo
 ```
 
-> In production evironments it's strongly recommended to create a dedicated role to these service accounts allowing only required verbs on the resources managed by the workflows.
+> In production environments, creating a dedicated role for these service accounts is strongly recommended, allowing only required verbs on the resources managed by the workflows.
 
 ### 6. Prepare secrets required by the pipelines
 
-Just in case of a private Git repository you can run this command to allow the clone command executed by the pipeline `ci.yaml`:
+Just in case of a private Git repository, you can run this command to allow the clone command executed by the pipeline `ci.yaml`:
 
 ```bash
 kubectl create secret generic github-token -n argo --from-literal=token=.........
@@ -117,11 +117,9 @@ The CI pipeline performs these steps:
 2. **Building Application**: Utilizes the GoLang template to compile the Go application.
 3. **Building and Pushing Docker Image**: Packages the application into a Docker image and pushes it to the registry.
 
-After the completion of all steps, you can check the correct status of every step:
+After the completion of all steps, you can check the correct status of every step and locate the updated Docker image in your registry:
 
 ![CI workflow graph](images/2_ci_graph.png)
-
-If all steps have been completed, you can find a new version of the Docker image in your registry.
 
 ### 9. Submit the CD pipeline
 
@@ -137,14 +135,12 @@ Alternatively, you can submit the workflow using the UI:
 
 The CD pipeline performs these steps:
 
-1. **Preparing an ephemeral environment**: Prepares an ephemeral environment using vCluster where the user can test the application inside an isolated Kubernetes cluster
-2. **Deploy the application**: Deploy the application Helm chart on the vCluster just created
+1. **Preparing an ephemeral environment**: Prepares a temporary environment using vCluster where the user can test the application inside an isolated Kubernetes cluster.
+2. **Deploy the application**: Deploy the application Helm chart on the vCluster just created.
 
 After the completion of all steps, you can check the correct status of every step:
 
 ![CD workflow graph](images/4_cd_graph.png)
-
-If all steps have been completed, you can check the status of your application deployed on the vCluster just created
 
 ### 10. Access to the application
 
@@ -163,7 +159,7 @@ NAME                                           READY   STATUS    RESTARTS   AGE
 demo-pr-request-hello-world-7f6d78645f-bjmjc   1/1     Running   0          7s
 ```
 
-As reported [here](https://www.vcluster.com/docs/using-vclusters/access) you can expose in different ways the ephemeral vCluster created.
+As reported [here](https://www.vcluster.com/docs/using-vclusters/access), you can expose the ephemeral vCluster created differently.
 
 - **Via Ingress**: An Ingress Controller with SSL passthrough support will provide the best user experience, but there is a workaround if this feature is not natively supported.
 
@@ -171,9 +167,9 @@ As reported [here](https://www.vcluster.com/docs/using-vclusters/access) you can
   - Traefik Proxy
   - Emissary
 
-  Make sure your ingress controller is installed and healthy on the cluster that will host your virtual clusters. More details [here](https://www.vcluster.com/docs/using-vclusters/access#via-ingress)
+  Ensure your ingress controller is installed and healthy on the cluster hosting your virtual clusters. More details [here](https://www.vcluster.com/docs/using-vclusters/access#via-ingress)
 - **Via LoadBalancer service**: The easiest way is to use the flag `--expose` in vcluster create to tell vCluster to use a LoadBalancer service. It depends on the specific implementation of the host Kubernetes cluster.
-- **Via NodePort service**: You can also expose the vCluster via a NodePort service. In this case, you have to create a NodePort service and change the `values.yaml` file to use for the creation of the vCluster. More details [here](https://www.vcluster.com/docs/using-vclusters/access#via-nodeport-service)
+- **Via NodePort service**: You can also expose the vCluster via a NodePort service. In this case, you must create a NodePort service and change the `values.yaml` file to use for the creation of the vCluster. More details [here](https://www.vcluster.com/docs/using-vclusters/access#via-nodeport-service)
 - **From Host **Cluster**: To access the virtual cluster from within the host cluster, you can directly connect to the vCluster service. Make sure you can access that service and then create a kube config in the following form:
   
   ```bash
