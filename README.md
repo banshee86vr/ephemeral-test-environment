@@ -4,7 +4,7 @@
 
 You can read the article at:
 
-- On my personal portfolio website: <https://lucabertelli.consulting/en/blog/vcluster>
+- My portfolio website: <https://lucabertelli.consulting/en/blog/vcluster>
 - On Medium: <https://medium.com/@bertelli.luca/ephemeral-test-environments-for-ci-workflows>
 
 ## How to use vCluster, ArgoCD Events and Argo Workflow to manage short-live test ephemeral environments
@@ -21,12 +21,9 @@ Project structure:
 └── vcluster
 ```
 
-- `argo` folder: All configurations made for
-  - `events`: Argo Events webhook, trigger (for Argo Workflow), and sensor
-  - `workflow`: CI/CD pipeline triggered by Argo Events
-    - `lang`: ArgoWorkflow Templates for supported languages
+- `argo-workflow`: CI/CD pipeline triggered by Argo Events
+  - `lang`: ArgoWorkflow Templates for supported languages
 - `hello-world-app` folder: Go Hello world application that prints a beautiful octopus 🐙 in ASCII code
-- `vcluster` folder: All configurations made for creating VCluster where deploy the hello world application
 
 Key highlights from the article include:
 
