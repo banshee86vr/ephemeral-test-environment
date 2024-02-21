@@ -111,7 +111,7 @@ Alternatively, you can submit the workflow using the UI:
 
 ![Submit CI workflow via UI](images/1_ci_submit.png)
 
-The CI pipeline performs these steps:
+The CI pipeline performs these steps inside the [ci.yaml](https://github.com/banshee86vr/ephemeral-test-environment/blob/main/argo-workflow/ci.yaml) manifest:
 
 1. **Cloning Repository**: Fetches the source code from the git repository.
 2. **Building Application**: Utilizes the GoLang template to compile the Go application.
@@ -133,7 +133,7 @@ Alternatively, you can submit the workflow using the UI:
 
 ![Submit CD workflow via UI](images/3_cd_submit.png)
 
-The CD pipeline performs these steps:
+The CD pipeline performs these steps inside the [cd.yaml](https://github.com/banshee86vr/ephemeral-test-environment/blob/main/argo-workflow/cd.yaml) manifest:
 
 1. **Preparing an ephemeral environment**: Prepares a temporary environment using vCluster where the user can test the application inside an isolated Kubernetes cluster.
 2. **Deploy the application**: Deploy the application Helm chart on the vCluster just created.
