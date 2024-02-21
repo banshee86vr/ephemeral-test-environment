@@ -114,7 +114,7 @@ Alternatively, you can submit the workflow using the UI:
 The CI pipeline performs these steps inside the [ci.yaml](https://github.com/banshee86vr/ephemeral-test-environment/blob/main/argo-workflow/ci.yaml) manifest:
 
 1. **Cloning Repository**: Fetches the source code from the git repository.
-2. **Building Application**: Utilizes the GoLang template to compile the Go application.
+2. **Building Application**: Utilizes the GoLang template [go.yaml](https://github.com/banshee86vr/ephemeral-test-environment/blob/main/argo-workflow/lang/go.yaml) to compile the Go application.
 3. **Building and Pushing Docker Image**: Packages the application into a Docker image and pushes it to the registry.
 
 After the completion of all steps, you can check the correct status of every step and locate the updated Docker image in your registry:
