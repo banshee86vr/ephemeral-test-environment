@@ -153,7 +153,7 @@ $ vcluster list
   ------------------+----------+-----------------+---------+---------+-----------+-------------------------------+---------+---------
     demo-pr-request | minikube | demo-pr-request | Running | 0.19.0  |           | xxxx-xx-xx xx:xx:xx +0100 CET | 1h8m49s | OSS
 
-$ ➜ vcluster connect demo-pr-request --namespace demo-pr-request -- kubectl get pod -n demo-pr-request
+$ vcluster connect demo-pr-request --namespace demo-pr-request -- kubectl get pod -n demo-pr-request
 
 NAME                                           READY   STATUS    RESTARTS   AGE
 demo-pr-request-hello-world-7f6d78645f-bjmjc   1/1     Running   0          7s
@@ -161,13 +161,7 @@ demo-pr-request-hello-world-7f6d78645f-bjmjc   1/1     Running   0          7s
 
 As reported [here](https://www.vcluster.com/docs/using-vclusters/access), you can expose the ephemeral vCluster created differently.
 
-- **Via Ingress**: An Ingress Controller with SSL passthrough support will provide the best user experience, but there is a workaround if this feature is not natively supported.
-
-  - Kubernetes Nginx
-  - Traefik Proxy
-  - Emissary
-
-  Ensure your ingress controller is installed and healthy on the cluster hosting your virtual clusters. More details [here](https://www.vcluster.com/docs/using-vclusters/access#via-ingress)
+- **Via Ingress**: An Ingress Controller with SSL passthrough support will provide the best user experience. Ensure your ingress controller is installed and healthy on the cluster hosting your virtual clusters. More details [here](https://www.vcluster.com/docs/using-vclusters/access#via-ingress)
 - **Via LoadBalancer service**: The easiest way is to use the flag `--expose` in vcluster create to tell vCluster to use a LoadBalancer service. It depends on the specific implementation of the host Kubernetes cluster.
 - **Via NodePort service**: You can also expose the vCluster via a NodePort service. In this case, you must create a NodePort service and change the `values.yaml` file to use for the creation of the vCluster. More details [here](https://www.vcluster.com/docs/using-vclusters/access#via-nodeport-service)
 - **From Host Cluster**: To access the virtual cluster from within the host cluster, you can directly connect to the vCluster service. Make sure you can access that service and then create a kube config in the following form:
