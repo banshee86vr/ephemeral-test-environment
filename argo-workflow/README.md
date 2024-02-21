@@ -13,7 +13,7 @@
 ```bash
 minikube start
 helm repo add argo https://argoproj.github.io/argo-helm
-helm install argo-workflows argo/argo-workflows
+helm install argo-workflows argo/argo-workflows -n argo --create-namespace
 ```
 
 This command installs Argo Workflows in the default namespace of your Kubernetes cluster.
