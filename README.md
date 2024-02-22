@@ -7,7 +7,7 @@ You can read the article at:
 - My portfolio website: <https://lucabertelli.consulting/en/blog/vcluster>
 - On Medium: <https://medium.com/@bertelli.luca/ephemeral-test-environments-for-ci-workflows>
 
-## How to use vCluster and Argo Workflow to manage short-live test ephemeral environments
+## How to use vCluster and Argo Workflow to manage ephemeral test environments
 
 Project structure:
 
