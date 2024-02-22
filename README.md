@@ -15,7 +15,7 @@ Project structure:
 .
 ├── argo-workflow
 │   └── lang
-├── hello-world-app
+└── hello-world-app
 ```
 
 - `argo-workflow`: CI/CD pipeline templates
