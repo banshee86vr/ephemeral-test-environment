@@ -16,7 +16,7 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v5
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: "latest"
       - name: Check action's npm version
