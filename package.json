@@ -9,7 +9,7 @@
   },
   "private": true,
   "devDependencies": {
-    "semantic-release": "^25.0.0"
+    "semantic-release": "^25.0.9"
   },
   "repository": "https://github.com/banshee86vr/ephemeral-test-environment.git"
 }

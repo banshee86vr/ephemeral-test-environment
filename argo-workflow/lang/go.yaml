@@ -23,7 +23,7 @@ spec:
         parameters:
           - name: path
       container:
-        image: golang:1.21.5
+        image: golang:1.27
         volumeMounts:
           - mountPath: /work
             name: work

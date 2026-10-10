@@ -97,7 +97,7 @@ spec:
               secretKeyRef:
                 name: github-token     # name of an existing k8s secret
                 key: token
-        image: alpine/git:v2.26.2
+        image: alpine/git:v2.49.1
         workingDir: /work
         # Do a shallow clone, which is the fastest way to clone, by using the
         # --depth, --branch, and --single-branch options
@@ -125,7 +125,7 @@ spec:
         readinessProbe:
           exec:
             command: [ sh, -c, "buildctl debug workers" ]
-        image: moby/buildkit:v0.12.3-rootless
+        image: moby/buildkit:v0.34.0-rootless
         volumeMounts:
           - name: work
             mountPath: /work

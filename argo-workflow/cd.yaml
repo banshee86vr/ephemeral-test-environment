@@ -99,7 +99,7 @@ spec:
                 name: github-token     # name of an existing k8s secret
                 namespace: argo
                 key: token
-        image: alpine/git:v2.26.2
+        image: alpine/git:v2.49.1
         workingDir: /work
         # Do a shallow clone, which is the fastest way to clone, by using the
         # --depth, --branch, and --single-branch options
@@ -117,7 +117,7 @@ spec:
         parameters:
           - name: name
       container:
-        image: ghcr.io/loft-sh/vcluster-cli:0.19
+        image: ghcr.io/loft-sh/vcluster-cli:0.19.9
         command:
           - vcluster
         args:
@@ -137,7 +137,7 @@ spec:
         volumeMounts:
           - mountPath: /work
             name: work
-        image: ghcr.io/loft-sh/vcluster-cli:0.19
+        image: ghcr.io/loft-sh/vcluster-cli:0.19.9
         workingDir: /work/{{inputs.parameters.path-chart}}
         command:
           - vcluster
